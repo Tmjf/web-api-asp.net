@@ -14,6 +14,6 @@ namespace web_api.Data
 
         }
 
-        public DbSet<Users> USers { get; set; }
+        public DbSet<Users> Users { get; set; }
     }
 }
