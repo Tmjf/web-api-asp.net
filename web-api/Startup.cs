@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using web_api.Data;
+using web_api.Data.Services;
 
 namespace web_api
 {
@@ -35,6 +36,9 @@ namespace web_api
 
             // Configure DbContext with SQL
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(ConnectionString));
+
+            //Configure the Services
+            services.AddTransient<UserService>();
 
             services.AddSwaggerGen(c =>
             {
