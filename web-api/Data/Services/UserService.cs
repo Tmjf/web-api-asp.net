@@ -28,5 +28,9 @@ namespace web_api.Data.Services
             _context.Users.Add(_user);
             _context.SaveChanges();
         }
+
+        public List<Users> GetAllUsers() => _context.Users.ToList();
+
+        public Users GetUserById(int userId) => _context.Users.FirstOrDefault(n => n.id == userId);
     }
 }

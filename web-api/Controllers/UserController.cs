@@ -19,6 +19,20 @@ namespace web_api.Controllers
             _userService = userService;
         }
 
+        [HttpGet("getAllUsers")]
+        public IActionResult GetAllUsers()
+        {
+            var allUsers = _userService.GetAllUsers();
+            return Ok(allUsers);
+        }
+
+        [HttpGet("getUserById/{id}")]
+        public IActionResult GetUserById(int id)
+        {
+            var user = _userService.GetUserById(id);
+            return Ok(user);
+        }
+
         [HttpPost("add-user")] // custom route
         public IActionResult AddUser([FromBody]UserVM user)
         {
