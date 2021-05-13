@@ -26,7 +26,7 @@ namespace web_api.Controllers
             return Ok(allUsers);
         }
 
-        [HttpGet("getUserById/{id}")]
+        [HttpGet("get-userById/{id}")]
         public IActionResult GetUserById(int id)
         {
             var user = _userService.GetUserById(id);
@@ -37,6 +37,20 @@ namespace web_api.Controllers
         public IActionResult AddUser([FromBody]UserVM user)
         {
             _userService.AddUser(user);
+            return Ok();
+        }
+
+        [HttpPut(("update-userById/{id}"))]
+        public IActionResult UpdateUserById(int id, [FromBody]UserVM user)
+        {
+            var updatedUser = _userService.UpdateUserById(id, user);
+            return Ok(updatedUser);
+        }
+
+        [HttpDelete(("delete-userById/{id}"))]
+        public IActionResult DeleteUserById(int id)
+        {
+            _userService.DeleteUserById(id);
             return Ok();
         }
     }

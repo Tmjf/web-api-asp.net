@@ -32,5 +32,31 @@ namespace web_api.Data.Services
         public List<Users> GetAllUsers() => _context.Users.ToList();
 
         public Users GetUserById(int userId) => _context.Users.FirstOrDefault(n => n.id == userId);
+
+        public Users UpdateUserById(int userId, UserVM user)
+        {
+            var _user = _context.Users.FirstOrDefault(n => n.id == userId);
+            if (_user != null)
+            {
+                _user.FirstName = user.FirstName;
+                _user.LastName = user.LastName;
+                _user.Email = user.Email;
+                _user.Country = user.Country;
+                _user.JobTitle = user.JobTitle;
+
+                _context.SaveChanges();
+            }
+            return _user;
+        }
+
+        public void DeleteUserById(int userId)
+        {
+            var _user = _context.Users.FirstOrDefault(n => n.id == userId);
+            if (_user != null)
+            {
+                _context.Remove(_user);
+                _context.SaveChanges();
+            }
+        }
     }
 }
